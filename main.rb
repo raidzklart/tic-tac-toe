@@ -14,8 +14,9 @@ class Board
   end
 
   def update_cells(num, weapon)
+    # system("cls") || system("clear")
     @cells[num-1] = weapon
-    self.display
+    display
   end
 end
 
@@ -36,6 +37,7 @@ class Game
 end
 
 class Player
+  attr_reader :weapon
   def initialize(weapon)
     @weapon = weapon
   end
@@ -45,6 +47,13 @@ class Player
 end
 
 game = Game.new
-game.set_player_one "X"
-game.set_player_two "O"
+puts "Player 1, choose X/O?"
+p1_selection = gets.chomp
+game.set_player_one p1_selection.upcase
+if game.player_one.weapon == "X"
+  game.set_player_two "O"
+else
+  game.set_player_two "X"
+end
 game.board.update_cells 5, game.player_one
+game.board.update_cells 6, game.player_two
