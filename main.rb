@@ -12,10 +12,15 @@ class Board
     puts "* #{@cells[6]}|#{@cells[7]}|#{@cells[8]} *"
     puts "*********"
   end
+
+  def update_cells(num, weapon)
+    @cells[num-1] = weapon
+    self.display
+  end
 end
 
 class Game
-  attr_reader :player_one, :player_two
+  attr_reader :player_one, :player_two, :board
   def initialize
     @board = Board.new
     @board.display
@@ -42,5 +47,4 @@ end
 game = Game.new
 game.set_player_one "X"
 game.set_player_two "O"
-puts game.player_one
-puts game.player_two
+game.board.update_cells 5, game.player_one
