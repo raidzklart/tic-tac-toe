@@ -16,7 +16,7 @@ class Board
   end
 
   def update_cells(num, weapon)
-    # system("cls") || system("clear")
+    system("cls") || system("clear")
     @cells[num-1] = weapon
     available_cells.delete(num)
     display
@@ -49,16 +49,6 @@ class Game
       @player_two = Player.new("X", @board)
     end
     puts "Player two you are: #{@player_two}"
-  end
-
-  def set_player_one(weapon)
-    
-    @player_one.game = self
-  end
-  
-  def set_player_two(weapon)
-    @player_two = Player.new(weapon, @board)
-    @player_two.game = self
   end
 
   def get_player_move(player)
@@ -94,8 +84,8 @@ class Player
   end
 end
 
-game = Game.new
 
+game = Game.new
 
 while true
   unless game.board.available_cells.empty?
