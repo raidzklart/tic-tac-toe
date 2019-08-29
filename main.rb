@@ -33,19 +33,26 @@ class Game
     @board = Board.new
     @board.display
     puts "Player 1, choose X/O?"
-    p1_selection = gets.chomp
-    self.set_player_one p1_selection.upcase
+    while true
+      p1_choice = gets.chomp.upcase
+      if p1_choice == "X" or p1_choice == "O"
+        @player_one = Player.new(p1_choice, @board)
+        break
+      else
+        puts "Player 1, YOU MUST choose X or O?"
+      end
+    end
     puts "Player one chose: #{@player_one}"
     if @player_one.weapon == "X"
-      self.set_player_two "O"
+      @player_two = Player.new("O", @board)
     else
-      self.set_player_two "X"
+      @player_two = Player.new("X", @board)
     end
     puts "Player two you are: #{@player_two}"
   end
 
   def set_player_one(weapon)
-    @player_one = Player.new(weapon, @board)
+    
     @player_one.game = self
   end
   
